@@ -1,0 +1,473 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+
+    <link type="text/css" href="{% static 'personalProfile/css/style.css' %}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'personalProfile/css/profile.css' %}" rel="stylesheet" />
+
+    <title>Профиль</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+
+            <img src="{% static 'personalProfile/images/logo.png' %}" alt="#">
+
+            <ul>
+                <li><a href="{% url 'news' %}">Новости</a></li>
+                <li><a href="{% url 'events' %}">Мероприятия</a></li>
+                <li><a href="{% url 'rating' %}">Рейтинг</a></li>
+                <li><a href="#">О нас</a></li>
+            </ul>
+
+
+            {% if request.user.is_authenticated %}
+                <div class="dropdown">
+                    <button id="btnDropdown">
+                        <img src=" {% static 'VNCore/images/profile.svg' %}" alt="#" id="btnProfile">
+                        <svg fill="none" height="8" viewBox="0 0 12 8" width="12" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M2.16 2.3a.75.75 0 0 1 1.05-.14L6 4.3l2.8-2.15a.75.75 0 1 1 .9 1.19l-3.24 2.5c-.27.2-.65.2-.92 0L2.3 3.35a.75.75 0 0 1-.13-1.05z" fill="currentColor" fill-rule="evenodd"></path></svg>
+                    </button>
+
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="#">Мой рейтинг</a>
+                        <a href="#">Мои мероприятия</a>
+                        <a href="#">Мой профиль</a>
+                        <a href="#">Мссенджер</a>
+                        <a href="{% url 'logout' %}">Выход</a>
+                    </div>
+                </div>
+                {% else %}
+                <div>
+                    <a href="{% url 'authentication' %}">Войти</a>
+                </div>
+
+            {% endif %}
+
+        </nav>
+    </header>
+
+    <section class="container_splite container_profile">
+
+        <div class="container_profile_left">
+            <div class="container_profile_card white_container_profile">
+                <img src="/images/madina.png" alt="#">
+                <ul>
+                    <li>
+                        <p>Ранг</p>
+                        <p>Госпожа</p>
+                    </li>
+                    <li>
+                        <p>Баллы</p>
+                        <p>1610</p>
+                    </li>
+                    <li>
+                        <p>Порядочность</p><svg width="17" height="18" viewBox="0 0 17 18" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.2181 8.83282C16.2181 13.0957 12.7472 16.555 8.4611 16.555C4.17504 16.555 0.704102 13.0957 0.704102 8.83282C0.704102 4.56994 4.17504 1.1106 8.4611 1.1106C12.7472 1.1106 16.2181 4.56994 16.2181 8.83282Z"
+                                fill="#89FF00" stroke="#169A4C" />
+                        </svg>
+                    </li>
+                </ul>
+            </div>
+
+            <a href="#" id="btnEditingProfile" class="greenButton">Редактировать профиль</a>
+
+        </div>
+
+        <div class="container_profile_right" id="containerUserInfo">
+            <div class="container_profile_info" id="profileInfo_box">
+                <div class="container_profile_info_personal_data">
+                    <h1>{{ request.session.fullname.name }} {{ request.session.fullname.surname }}</h1>
+                    <h2 id="idUser">{{ request.session.fullname.username }}#{{ request.session.fullname.id }}</h2>
+
+    
+                    <div class="container_profile_info_personal_data_block">
+                        <h3>Возраст</h3>
+                        <p id="userAge">22 года</p>
+                    </div>
+    
+                    <div class="container_profile_info_personal_data_block">
+                        <h3>Образование</h3>
+                        <p id="education_p">Северо-Кавказская Государственная Академия</p>
+                    </div>
+    
+                    <div class="container_profile_info_personal_data_block">
+                        <h3>Специальность</h3>
+                        <p id="specialization_p"></p>
+                    </div>
+    
+                    <div class="container_profile_info_personal_data_block">
+                        <h3>О себе</h3>
+                        <p id="aboutMe">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p>
+                    </div>
+                </div>
+    
+                <div class="container_profile_info_participate">
+                    <div class="container_profile_info_participate_title">
+                        <h1>Приянла участие</h1>
+                    </div>
+    
+                    <!-- Тут стоит использовать ul ? -->
+                    <div class="container_profile_info_participate_listCard">
+                        <div class="container_profile_info_participate_card">
+                            <img src="/images/profilePeopleCard.png" alt="#">
+    
+                            <div class="container_profile_info_participate_card_info">
+                                <p>Lorem ipsum dolor sit amet</p>
+    
+                                <div class="tags">
+                                    <a href="#">03.03.2023</a>
+                                    <a href="#">г.Черкесск</a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="container_profile_info_participate_card">
+                            <img src="/images/profilePeopleCard.png" alt="#">
+    
+                            <div class="container_profile_info_participate_card_info">
+                                <p>Lorem ipsum dolor sit amet</p>
+    
+                                <div class="tags">
+                                    <a href="#">03.03.2023</a>
+                                    <a href="#">г.Черкесск</a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="container_profile_info_participate_card">
+                            <img src="/images/profilePeopleCard.png" alt="#">
+    
+                            <div class="container_profile_info_participate_card_info">
+                                <p>Lorem ipsum dolor sit amet</p>
+    
+                                <div class="tags">
+                                    <a href="#">03.03.2023</a>
+                                    <a href="#">г.Черкесск</a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="container_profile_info_participate_card">
+                            <img src="/images/profilePeopleCard.png" alt="#">
+    
+                            <div class="container_profile_info_participate_card_info">
+                                <p>Lorem ipsum dolor sit amet</p>
+    
+                                <div class="tags">
+                                    <a href="#">03.03.2023</a>
+                                    <a href="#">г.Черкесск</a>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+    
+                <div class="container_profile_info_accrualPoints">
+                    <h1>Начисление баллов</h1>
+                    <div class="container_profile_info_accrualPoints_list">
+    
+                        <!-- Тут лучше стоило использовать тег ul/li ? -->
+                        <div class="container_profile_info_accrualPoints_card">
+                            <div class="container_profile_info_accrualPoints_card_countScores">
+                                <h2>+5</h2>
+                                <p>03.03.2023</p>
+                            </div>
+    
+                            <div class="container_profile_info_accrualPoints_card_info">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt
+                                    ut labore et dolore magna aliqua.
+                                </p>
+                            </div>
+                        </div>
+    
+                        <div class="container_profile_info_accrualPoints_card">
+                            <div class="container_profile_info_accrualPoints_card_countScores">
+                                <h2>+5</h2>
+                                <p>03.03.2023</p>
+                            </div>
+    
+                            <div class="container_profile_info_accrualPoints_card_info">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt
+                                    ut labore et dolore magna aliqua.
+                                </p>
+                            </div>
+                        </div>
+    
+                        <div class="container_profile_info_accrualPoints_card">
+                            <div class="container_profile_info_accrualPoints_card_countScores">
+                                <h2>+5</h2>
+                                <p>03.03.2023</p>
+                            </div>
+    
+                            <div class="container_profile_info_accrualPoints_card_info">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt
+                                    ut labore et dolore magna aliqua.
+                                </p>
+                            </div>
+                        </div>
+    
+                        <div class="container_profile_info_accrualPoints_card">
+                            <div class="container_profile_info_accrualPoints_card_countScores">
+                                <h2>+5</h2>
+                                <p>03.03.2023</p>
+                            </div>
+    
+                            <div class="container_profile_info_accrualPoints_card_info">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt
+                                    ut labore et dolore magna aliqua.
+                                </p>
+                            </div>
+                        </div>
+    
+    
+    
+                    </div>
+                </div>
+    
+                <div class="container_profile_info_historyDecency">
+                    <h1>История порядочности</h1>
+    
+                    <ul>
+                        <!-- Может стоило использовать grid ? -->
+                        <li>
+                            <div class="indicator"></div>
+    
+                            <div class="container_profile_info_decency_date">
+                                <h3>28</h3>
+                                <p>января 2023</p>
+                            </div>
+    
+                            <div class="container_profile_info_decency_info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
+                            </div>
+    
+                            <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="8.92395" cy="8.71204" r="8.27649" fill="#5CA781" />
+                            </svg>
+    
+                            <div class="container_profile_info_decency_additional_info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            </div>
+                        </li>
+    
+                        <li>
+                            <div class="indicator"></div>
+    
+                            <div class="container_profile_info_decency_date">
+                                <h3>28</h3>
+                                <p>января 2023</p>
+                            </div>
+    
+                            <div class="container_profile_info_decency_info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
+                            </div>
+    
+                            <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="8.92395" cy="8.71204" r="8.27649" fill="#5CA781" />
+                            </svg>
+    
+                            <div class="container_profile_info_decency_additional_info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            </div>
+                        </li>
+    
+                        <li>
+                            <div class="indicator"></div>
+    
+                            <div class="container_profile_info_decency_date">
+                                <h3>28</h3>
+                                <p>января 2023</p>
+                            </div>
+    
+                            <div class="container_profile_info_decency_info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
+                            </div>
+    
+                            <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="8.92395" cy="8.71204" r="8.27649" fill="#5CA781" />
+                            </svg>
+    
+                            <div class="container_profile_info_decency_additional_info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            </div>
+                        </li>
+    
+                        <li>
+                            <div class="indicator"></div>
+    
+                            <div class="container_profile_info_decency_date">
+                                <h3>28</h3>
+                                <p>января 2023</p>
+                            </div>
+    
+                            <div class="container_profile_info_decency_info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
+                            </div>
+    
+                            <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="8.92395" cy="8.71204" r="8.27649" fill="#5CA781" />
+                            </svg>
+    
+                            <div class="container_profile_info_decency_additional_info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            </div>
+                        </li>
+    
+                        <li>
+                            <div class="indicator"></div>
+    
+                            <div class="container_profile_info_decency_date">
+                                <h3>28</h3>
+                                <p>января 2023</p>
+                            </div>
+    
+                            <div class="container_profile_info_decency_info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor </p>
+                            </div>
+    
+                            <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="8.92395" cy="8.71204" r="8.27649" fill="#5CA781" />
+                            </svg>
+    
+                            <div class="container_profile_info_decency_additional_info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            </div>
+                        </li>
+                    </ul>
+    
+                </div>
+            </div>
+
+            <div class="container_profile_editingProfile" id="containerEditUserInfo">
+                <h1>Редактирование профиля</h1>
+
+                <div class="editingInput">
+                    <p>Электронная почта</p>
+                    <input type="text" placeholder="Введите ваш  E-mail">
+                </div>
+
+                <div class="editingInput">
+                    <p>Возраст</p>
+                    <input type="text" placeholder="Введите ваш  E-mail">
+                </div>
+
+                <div class="editingInput">
+                    <p>Образование</p>
+                    <select name="" id="">
+                        <option value="1">Выберите свое образовательное учреждение</option>
+                        <option value="1">Северо-Кавказская Государственная Академия</option>
+                    </select>
+                </div>
+
+                <div class="editingInput">
+                    <p>Специальность</p>
+                    <select name="" id="">
+                        <option value="1">Выберите свою специальность</option>
+                        <option value="1">Программная-инеженерия</option>
+                    </select>
+                </div>
+
+                <div class="editingInput">
+                    <p>Выберите свою специальность</p>
+                    <textarea name="" id="" cols="30" rows="10">Расскажите вкратце о себе</textarea>
+                    <p class="">244 из 1200 символов (минимум 200)</p>
+                </div>
+
+                <div class="btnSave">
+                    <a href="#" id="btnSave" class="greenButton">Сохранить</a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <footer>
+        <div class="footer_up">
+            <div class="footer_card">
+                <div class="footer_card_title">
+                    <h1>О нас</h1>
+                    <hr>
+                </div>
+
+                <img src="/images/logo.svg" alt="logo">
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                </p>
+            </div>
+
+            <div class="footer_card">
+                <div class="footer_card_title">
+                    <h1>Навигация</h1>
+                    <hr>
+                </div>
+
+                <ul>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">Мероприятия</a></li>
+                    <li><a href="#">Рейтинг</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Документы</a></li>
+                </ul>
+
+            </div>
+
+            <div class="footer_card">
+                <div class="footer_card_title">
+                    <h1>Обратная связь</h1>
+                    <hr>
+                </div>
+
+                <ul>
+                    <li>
+                        <p>8 (800) 333-77-37</p>
+                    </li>
+                    <li>
+                        <p>my_carier@gmail.com</p>
+                    </li>
+                    <li>
+                        <p>support_carier@gmail.com</p>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="{% static 'personalProfile/js/onclick.js' %}" ></script>
+    <script src="{% static 'personalProfile/js/profile.js' %}" type="module" ></script>
+
+</body>
+
+</html>

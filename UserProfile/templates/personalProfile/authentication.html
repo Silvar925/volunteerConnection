@@ -1,0 +1,250 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+
+    <link type="text/css" href="{% static 'personalProfile/css/authentication.css' %}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'personalProfile/css/style.css' %}" rel="stylesheet" />
+
+
+    <title>Авторизация</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+
+            <img src="{% static 'personalProfile/images/logo.png' %}" alt="#">
+
+            <ul>
+                <li><a href="{% url 'news' %}">Новости</a></li>
+                <li><a href="{% url 'events' %}">Мероприятия</a></li>
+                <li><a href="{% url 'rating' %}">Рейтинг</a></li>
+                <li><a href="{% url 'logout' %}">Выйти</a></li>
+                <li><a href="#">О нас</a></li>
+            </ul>
+
+
+            {% if request.user.is_authenticated %}
+                <div class="dropdown">
+                    <button onclick="toggleDropdown()">
+                        <img src=" {% static 'VNCore/images/profile.svg' %}" alt="#" id="btnProfile">
+                        <svg fill="none" height="8" viewBox="0 0 12 8" width="12" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M2.16 2.3a.75.75 0 0 1 1.05-.14L6 4.3l2.8-2.15a.75.75 0 1 1 .9 1.19l-3.24 2.5c-.27.2-.65.2-.92 0L2.3 3.35a.75.75 0 0 1-.13-1.05z" fill="currentColor" fill-rule="evenodd"></path></svg>
+                    </button>
+
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="#">Мой рейтинг</a>
+                        <a href="#">Мои мероприятия</a>
+                        <a href="#">Мой профиль</a>
+                        <a href="#">Мссенджер</a>
+                        <a href="{% url 'logout' %}">Выход</a>
+                    </div>
+                </div>
+                {% else %}
+                <div>
+                    <a href="{% url 'authentication' %}">Войти</a>
+                </div>
+
+            {% endif %}
+
+        </nav>
+
+    </header>
+
+    <section class="container_authentication">
+        <div class="container_authentication_authorization white_container_authentication" id="authorization_box">
+            <div class="container_authentication_title">
+                <div class="container_authentication_title_left">
+                    <img src="{% static 'personalProfile/images/logo.png' %}" alt="logo">
+                </div>
+
+                <div class="container_authentication_title_right">
+                    <p>Еще не зарегестрированы ?</p>
+                    <a href="#" id="btnRegistration">Регистрация</a>
+                </div>
+            </div>
+
+            <div class="container_authentication_title_h1">
+                <h1>Вход</h1>
+            </div>
+
+
+            <form action="{% url 'verification' %}" method="post" class="container_authentication_dateEntry">
+                {% csrf_token %}
+                
+                <div class="input_box">
+                    <p>Электронная почта</p>
+                    <input type="text" placeholder="email@example.com" name="email">
+                </div>
+
+
+                <div class="input_box">
+                    <div class="input_box_title">
+                        <p>Пароль</p>
+                        <a href="#">Забыли пароль ?</a>
+                    </div>
+
+                    <input type="password" placeholder="Введите пароль" name="password">
+                </div>
+
+                <div class="btnAuthentication_box">
+                    <label for="option1"><input type="checkbox" id="option1" name="option1">Запомнить меня</label>
+                    <button type="submit" value="Отправить" class="blueButton">Войти</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="container_authentication_registration white_container_authentication hidden" id="registration_box">
+            <div class="container_authentication_title">
+                <div class="container_authentication_title_left">
+                    <img src="/images/logo.svg" alt="logo">
+                </div>
+
+                <div class="container_authentication_title_right">
+                    <p>Уже зарегистрированы?</p>
+                    <a href="#" id="btnAuthorization">Войти</a>
+                </div>
+            </div>
+
+            <div class="container_authentication_title_h1">
+                <h1>Регистрация</h1>
+            </div>
+
+            <form action="{% url 'register' %}" method="post" class="container_authentication_dateEntry">
+                {% csrf_token %}
+
+                <div class="input_box">
+                    <p>Фамилия</p>
+                    <input type="text" name="surname" placeholder="Введите вашу Фамилию">
+                </div>
+
+                <div class="input_box">
+                    <p>Имя</p>
+                    <input type="text" name="name" placeholder="Введите Имя">
+                </div>
+
+                <div class="input_box">
+                    <p>Отчество</p>
+                    <input type="text" name="fathername" placeholder="Введите ваше Отчество">
+                </div>
+
+                <div class="input_box">
+                    <p>Username</p>
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+
+                <div class="input_box">
+                    <p>Электронная почта</p>
+                        <input type="text" name="email" placeholder="Введите ваш E-mail">
+                </div>
+
+                <div class="input_box">
+                    <p>Образование</p>
+                    <input type="text" name="education" placeholder="Образование">
+                </div>
+
+                <div class="input_box">
+                    <p>Специализация</p>
+                    <input type="text" name="specialization" placeholder="Специализация">
+                </div>
+
+                <div class="input_box">
+                    <p>Пароль</p>
+                    <input type="password" name="password" placeholder="Введите пароль">
+                </div>
+
+                <div class="input_box">
+                    <button type="submit" class="blueButton">Зарегистрироваться</button>
+                </div>
+            </form>
+
+            <div class="registrationTips">
+                <ul>
+                    <li>
+                        <p>--Минимум 6 символов</p>
+                    </li>
+                    <li>
+                        <p>--Содержит особые символы</p>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <p>--Содержит цифры</p>
+                    </li>
+                    <li>
+                        <p>--Содержит заглавные и строчные буквы</p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="footer_up">
+            <div class="footer_card">
+                <div class="footer_card_title">
+                    <h1>О нас</h1>
+                    <hr>
+                </div>
+
+                <img src="{% static 'personalProfile/images/logo.png' %}" alt="logo">
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                </p>
+            </div>
+
+            <div class="footer_card">
+                <div class="footer_card_title">
+                    <h1>Навигация</h1>
+                    <hr>
+                </div>
+
+                <ul>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">Мероприятия</a></li>
+                    <li><a href="#">Рейтинг</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Документы</a></li>
+                </ul>
+
+            </div>
+
+            <div class="footer_card">
+                <div class="footer_card_title">
+                    <h1>Обратная связь</h1>
+                    <hr>
+                </div>
+
+                <ul>
+                    <li>
+                        <p>8 (800) 333-77-37</p>
+                    </li>
+                    <li>
+                        <p>my_carier@gmail.com</p>
+                    </li>
+                    <li>
+                        <p>support_carier@gmail.com</p>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="{% static 'personalProfile/js/authentication.js' %}" type="module"></script>
+</body>
+
+</html>

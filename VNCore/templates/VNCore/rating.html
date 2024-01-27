@@ -1,0 +1,223 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link type="text/css" href="{% static 'VNCore/css/style.css' %}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'VNCore/css/rating.css' %}" rel="stylesheet" />
+
+    <title>Рейтинг</title>
+</head>
+
+<body>
+
+    <header id="header">
+        <nav>
+
+            <img src="{% static 'personalProfile/images/logo.png' %}" alt="#">
+
+            <ul>
+                <li><a href="{% url 'news' %}">Новости</a></li>
+                <li><a href="{% url 'events' %}">Мероприятия</a></li>
+                <li><a href="{% url 'rating' %}">Рейтинг</a></li>
+                <li><a href="{% url 'logout' %}">Выйти</a></li>
+                <li><a href="#">О нас</a></li>
+            </ul>
+
+
+            {% if request.user.is_authenticated %}
+                <div class="dropdown">
+                    <button onclick="toggleDropdown()">
+                        <img src=" {% static 'VNCore/images/profile.svg' %}" alt="#" id="btnProfile">
+                        <svg fill="none" height="8" viewBox="0 0 12 8" width="12" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M2.16 2.3a.75.75 0 0 1 1.05-.14L6 4.3l2.8-2.15a.75.75 0 1 1 .9 1.19l-3.24 2.5c-.27.2-.65.2-.92 0L2.3 3.35a.75.75 0 0 1-.13-1.05z" fill="currentColor" fill-rule="evenodd"></path></svg>
+                    </button>
+
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="#">Мой рейтинг</a>
+                        <a href="#">Мои мероприятия</a>
+                        <a href="#">Мой профиль</a>
+                        <a href="#">Мссенджер</a>
+                        <a href="{% url 'logout' %}">Выход</a>
+                    </div>
+                </div>
+                {% else %}
+                <div>
+                    <a href="{% url 'authentication' %}">Войти</a>
+                </div>
+
+            {% endif %}
+
+        </nav>
+    </header>
+
+    <section class="container_rating">
+
+        <div class="content">
+            <div class="container_rating_title">
+                <div class="container_rating_title_buttons">
+                    <a href="#" class="blueButton">Ранг 1</a>
+                    <a href="#" class="blueButton">Ранг 2</a>
+                    <a href="#" class="blueButton">Ранг 3</a>
+                </div>
+
+                <div class="container_rating_title_info">
+                    <h2>Условие повышения ранга</h2>
+                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in </p>
+                </div>
+            </div>
+
+            <div class="container_rating_userRating">
+                <div class="container_rating_userRating_title">
+                    <h1>Рейтинг пользователей</h1>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="number">№</th>
+                            <th class="fullname">ФИО</th>
+                            <th class="university">ВУЗ</th>
+                            <th class="events">Кол-во мероприятий</th>
+                            <th class="alpha">Альфа</th>
+                            <th class="omega">Омега</th>
+                            <th class="point">Баллы</t>
+                        </tr>
+                    </thead>
+
+                    <!-- Спросить почему мне пришлость повесить на каждый td один и тот же класс, почему thbody tr td не работа -->
+                    <!-- Почему не работает abosolute -->
+                    <tbody id="thbody">
+                        <!-- <tr>
+                            <td class="number"><img src="/images/top_1.svg" alt="#"></td>
+                            <td class="fullname">Чомаева Мадина Халисовна</td>
+                            <td class="university">СКГА</td>
+                            <td class="events">154</td>
+                            <td class="alpha">100</td>
+                            <td class="omega">54</td>
+                            <td class="point">154</td>
+                        </tr>
+    
+                        <tr>
+                            <td class="number"><img src="/images/top_2.svg" alt="#"></td>
+                            <td class="fullname">Чомаева Мадина Халисовна</td>
+                            <td class="university">СКГА</td>
+                            <td class="events">154</td>
+                            <td class="alpha">100</td>
+                            <td class="omega">54</td>
+                            <td class="point">154</td>
+                        </tr>
+    
+                        <tr>
+                            <td class="number"><img src="/images/top_3.svg" alt="#"></td>
+                            <td class="fullname">Чомаева Мадина Халисовна</td>
+                            <td class="university">СКГА</td>
+                            <td class="events">154</td>
+                            <td class="alpha">100</td>
+                            <td class="omega">54</td>
+                            <td class="point">154</td>
+                        </tr>
+    
+                        <tr>
+                            <td class="number">4</td>
+                            <td class="fullname">Чомаева Мадина Халисовна</td>
+                            <td class="university">СКГА</td>
+                            <td class="events">154</td>
+                            <td class="alpha">100</td>
+                            <td class="omega">54</td>
+                            <td class="point">154</td>
+                        </tr>
+    
+                        <tr>
+                            <td class="number">5</td>
+                            <td class="fullname">Чомаева Мадина Халисовна</td>
+                            <td class="university">СКГА</td>
+                            <td class="events">154</td>
+                            <td class="alpha">100</td>
+                            <td class="omega">54</td>
+                            <td class="point">154</td>
+                        </tr> -->
+
+                    </tbody>
+
+                </table>
+
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <footer>
+        <div class="footer_up">
+            <div class="footer_card">
+                <div class="footer_card_title">
+                    <h1>О нас</h1>
+                    <hr>
+                </div>
+
+                <img src="{% static 'VNCore/images/logo.png' %}" alt="#">
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                </p>
+            </div>
+
+            <div class="footer_card">
+                <div class="footer_card_title">
+                    <h1>Навигация</h1>
+                    <hr>
+                </div>
+
+                <ul>
+                    <li><a href="#">Новости</a></li>
+                    <li><a href="#">Мероприятия</a></li>
+                    <li><a href="#">Рейтинг</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Документы</a></li>
+                </ul>
+
+            </div>
+
+            <div class="footer_card">
+                <div class="footer_card_title">
+                    <h1>Обратная связь</h1>
+                    <hr>
+                </div>
+
+                <ul>
+                    <li>
+                        <p>8 (800) 333-77-37</p>
+                    </li>
+                    <li>
+                        <p>my_carier@gmail.com</p>
+                    </li>
+                    <li>
+                        <p>support_carier@gmail.com</p>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="{% static 'VNCore/js/rating.js' %}" type="module"></script>
+
+</body>
+
+</html>

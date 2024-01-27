@@ -1,0 +1,197 @@
+.section_events {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.section_events_grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.section_events_filter {
+    display: flex;
+    align-items: center;
+    width: 1201px;
+    justify-content: space-between;
+}
+
+.section_events_filter p {
+    color: #8A8EA3;
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-variant: small-caps;
+    margin-left: 20px;
+}
+
+.section_events_filter_f {
+    display: flex;
+    gap: 10px;
+}
+
+.section_events_filter_f input {
+    width: 378px;
+}
+
+.section_events_filter_f select {
+    width: 230px;
+    background-color: white;
+    border: 1px solid #293F66;
+    color: #293F66;
+}
+
+.container_events {
+    display: grid;
+    gap: 35px;
+    grid-template-rows: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+}
+
+.container_events_cardList {
+    display: flex;
+    gap: 32px;
+}
+
+.eventPage {
+    display: flex;
+    gap: 34px;
+}
+
+.eventPage_left {
+    display: flex;
+    gap: 23px;
+    padding: 26px 40px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eventPage_left p {
+    color: #000;
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-variant: small-caps;
+}
+
+.container_eventPage {
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+}
+
+.container_eventPage_title {
+    display: flex;
+    width: 800px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container_eventPage_info {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    width: 829px;
+    height: 99px;
+    color: #1E1E1E;
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+}
+
+.events_tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.events_tags p {
+    border-radius: 10px;
+    padding: 11px 9px;
+    border: 1px solid #8A8EA3;
+    color: #8A8EA3;
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.container_eventPage_info_volunteers {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.container_eventPage_info_volunteers h1 {
+    color: #1E1E1E;
+    font-family: "Montserrat";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+.container_eventPage_info_programEvent {
+    display: flex;
+    gap: 19px;
+    flex-direction: column;
+    padding-top: 26px;
+    padding-left: 30px;
+    padding-bottom: 55px;
+    padding-right: 16px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.container_eventPage_info_programEvent_text p {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container_eventPage_info_download {
+    display: flex;
+    gap: 17px;
+    flex-direction: column;
+}
+
+.container_eventPage_info_download a {
+    color: #8A8EA3;
+    border: 1px solid #8A8EA3;
+    padding: 9px 11px;
+    border-radius: 10px;
+}
+
+.container_eventPage_info_download a:hover {
+    background-color: #8A8EA3;
+    color: white;
+    border: none;
+}
+
+.container_eventPage_info_organizers {
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+}
+
+.container_eventPage_info_gallery {
+    display: flex;
+    flex-direction: column;
+}
+
+.eventPage_left img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
