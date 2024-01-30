@@ -10,5 +10,6 @@ urlpatternsPersonalProfile = [
     path('register/', views.register, name='register'),
     path('logout/', views.user_logout, name='logout'),
 
-    path('api/users/', views.UsersAPIView.as_view(), name='users')
+    path('api/users/', views.UsersAPIView.as_view(), name='users'),
+    path('api/rating/', views.RatingAPIView.as_view(), name='rating'),
 ]

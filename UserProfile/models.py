@@ -31,7 +31,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     specialization = models.CharField(max_length=100, verbose_name="Специализация")
     about_me = models.TextField(verbose_name="Обо мне")
     is_staff = models.BooleanField(default=False)
-    participatingEvents = models.JSONField(default=dict, blank=True, null=True, verbose_name="Мои мероприятия")
+    participatingEvents1 = models.CharField(max_length=100, verbose_name="id мероприятий", default=0)
+
 
     profile_pic = models.ImageField(upload_to='profile_pics', verbose_name="")
     objects = CustomUserManager()
@@ -46,15 +47,16 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Rating(models.Model):
     User = models.OneToOneField(User, on_delete=models.CASCADE)
-    countEvents = models.IntegerField(verbose_name = "Количество мероприятий")
-    alpha = models.IntegerField(verbose_name = "Альфа")
-    omega = models.IntegerField(verbose_name = "Омега")
-    points = models.IntegerField(verbose_name = "Баллы")
+    countEvents = models.IntegerField(verbose_name="Количество мероприятий")
+    alpha = models.IntegerField(verbose_name="Альфа")
+    omega = models.IntegerField(verbose_name="Омега")
+    points = models.IntegerField(verbose_name="Баллы")
+    decency = models.CharField(max_length=50, verbose_name="Порядочность", default='some_default_value')
+    nameRating = models.CharField(max_length=50, verbose_name="Название рейтинга", default='some_default_value')
 
     class Meta:
         verbose_name = "Рейтинг"
         verbose_name_plural = "Рейтинг"
-
 
 class Organizers(models.Model):
     User = models.OneToOneField(User, on_delete=models.CASCADE)

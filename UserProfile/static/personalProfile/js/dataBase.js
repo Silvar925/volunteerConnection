@@ -10,3 +10,5 @@ async function fetchData(apiUrl) {
 }
 
 export const Users = await fetchData('/api/users/')
+export const Events = await fetchData('/api/listEvents')
+export const Rating = await fetchData('/api/rating/')

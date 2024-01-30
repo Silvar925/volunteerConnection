@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
-from .models import User
+from .models import User, Rating
 from rest_framework import generics
-from .serializer import UserSerializer
+from .serializer import UserSerializer, RatingSerializer
 
 def personalProfile(request):
     return render(request, 'personalProfile/profile.html')
@@ -88,3 +88,7 @@ def personalAccount(request):
 class UsersAPIView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+class RatingAPIView(generics.ListAPIView):
+    queryset = Rating.objects.all()
+    serializer_class = RatingSerializer

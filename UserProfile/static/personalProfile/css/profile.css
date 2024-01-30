@@ -144,6 +144,11 @@
     background-color: #F5F5F5;
 }
 
+.container_profile_info_participate_card img {
+    height: 142px;
+    width: 169px;
+}
+
 .tags {
     display: flex;
     flex-direction: column;
@@ -321,7 +326,7 @@
 }
 
 .container_profile_editingProfile {
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 14px;
     width: 713px;
